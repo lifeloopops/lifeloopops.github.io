@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>LifeLoopOps</title>
+<meta name="description" content="An always-on agent steps into the places where a person lives and works. What it picks up there becomes the starting point, and development and operations run as one continuous loop.">
+<link rel="canonical" href="https://lsklab.com/lifeloopops/en.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LifeLoopOps">
+<meta property="og:description" content="An always-on agent steps into the places where a person lives and works. What it picks up there becomes the starting point, and development and operations run as one continuous loop.">
+<meta property="og:url" content="https://lsklab.com/lifeloopops/en.html">
+<meta property="og:site_name" content="LifeLoopOps">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@letsspeak">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
@@ -78,6 +88,12 @@ figcaption { font-size: 0.88rem; color: var(--muted); }
 .prompt pre { margin: 0; padding: 16px 14px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.75; white-space: pre-wrap; overflow-wrap: anywhere; }
 button.copy { font: inherit; font-size: 0.82rem; color: var(--bg); background: var(--accent); border: 0; padding: 6px 14px; border-radius: 3px; cursor: pointer; white-space: nowrap; }
 button.copy:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.share { border-top: 2px solid var(--fg); padding-top: 24px; }
+.share-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.share-row a, .share-row button { font: inherit; font-size: 0.9rem; font-weight: 700; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; text-decoration: none; cursor: pointer; line-height: 1.4; }
+.share-row a:hover, .share-row button:hover { border-color: var(--accent); color: var(--accent); }
+.share-row a:focus-visible, .share-row button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.share-url { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); overflow-wrap: anywhere; user-select: all; }
 footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 0.85rem; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }
 </style>
 <style>body { line-height: 1.65; } h1 { letter-spacing: -0.02em; }</style>
@@ -459,6 +475,20 @@ private GitHub repository. I will tell you which repository later.
   </ul>
 </section>
 
+<section class="share">
+  <h2>If this resonates, share it</h2>
+  <div class="share-row">
+    <a href="https://twitter.com/intent/tweet?text=LifeLoopOps%3A%20development%20and%20operations%20with%20life%20in%20the%20loop&amp;url=https%3A%2F%2Flsklab.com%2Flifeloopops%2Fen.html&amp;hashtags=LifeLoopOps&amp;via=letsspeak" target="_blank" rel="noopener">X</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flsklab.com%2Flifeloopops%2Fen.html" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Flsklab.com%2Flifeloopops%2Fen.html" target="_blank" rel="noopener">LINE</a>
+    <a href="https://b.hatena.ne.jp/add?mode=confirm&amp;url=https%3A%2F%2Flsklab.com%2Flifeloopops%2Fen.html&amp;title=LifeLoopOps" target="_blank" rel="noopener">Hatena Bookmark</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Flsklab.com%2Flifeloopops%2Fen.html" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Flsklab.com%2Flifeloopops%2Fen.html&amp;t=LifeLoopOps%3A%20development%20and%20operations%20with%20life%20in%20the%20loop" target="_blank" rel="noopener">Hacker News</a>
+    <button type="button" id="copy-link" data-copied="Copied" data-selected="Selected">Copy link</button>
+  </div>
+  <div class="share-url" id="share-url">https://lsklab.com/lifeloopops/en.html</div>
+</section>
+
 <footer>
   <div>Written from a working session on 20 November 2026. Product details come from official documentation and press reports and may change.</div>
   <div><strong>LifeLoopOps</strong> is the name of a method. It is not affiliated with any company or product whose name contains the same words.</div>
@@ -483,6 +513,22 @@ private GitHub repository. I will tell you which repository later.
         setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
       }, selectText);
     } catch (e) { selectText(); }
+  });
+  var cl = document.getElementById('copy-link');
+  var su = document.getElementById('share-url');
+  cl.addEventListener('click', function () {
+    var label = cl.textContent;
+    function sel() {
+      var r = document.createRange(); r.selectNodeContents(su);
+      var x = window.getSelection(); x.removeAllRanges(); x.addRange(r);
+      cl.textContent = cl.getAttribute('data-selected');
+    }
+    try {
+      navigator.clipboard.writeText(su.textContent).then(function () {
+        cl.textContent = cl.getAttribute('data-copied');
+        setTimeout(function () { cl.textContent = label; }, 2000);
+      }, sel);
+    } catch (e) { sel(); }
   });
 })();
 </script>
