@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="icon.png">
 <meta name="twitter:creator" content="@letsspeak">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -24,30 +24,30 @@
 <style>
 /* Layout: one reading column (about 40 Japanese characters wide); tables and diagrams may run wider inside their own scroll boxes. Two role colors mark the life-side agent and the builder agent everywhere they appear. */
 :root {
-  --bg: #f4f6f8;
+  --bg: #f4f5f9;
   --surface: #ffffff;
-  --fg: #17222c;
-  --muted: #586673;
-  --line: #d5dce2;
-  --accent: #0a6a78;
-  --life: #4450c4;
-  --build: #a85a12;
-  --warn-bg: #fff4e0;
-  --code-bg: #e9eef2;
+  --fg: #0a0f2e;
+  --muted: #5a607a;
+  --line: #d6d9e6;
+  --accent: #b35a00;
+  --life: #3346c9;
+  --build: #0f7a5c;
+  --warn-bg: #fff1dc;
+  --code-bg: #e8eaf3;
   --font-display: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
   --font-body: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #10171d; --surface: #18222b; --fg: #e4eaef; --muted: #96a4b0; --line: #2c3a46;
-    --accent: #5cc6d6; --life: #9ba5ff; --build: #eaa76a; --warn-bg: #33280f; --code-bg: #1f2c37;
+    --bg: #010125; --surface: #0c0f3a; --fg: #eef0fa; --muted: #9aa0bd; --line: #252a55;
+    --accent: #ffb23e; --life: #a3b2ff; --build: #5fd3a8; --warn-bg: #2e2410; --code-bg: #171c45;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #10171d; --surface: #18222b; --fg: #e4eaef; --muted: #96a4b0; --line: #2c3a46;
-  --accent: #5cc6d6; --life: #9ba5ff; --build: #eaa76a; --warn-bg: #33280f; --code-bg: #1f2c37;
+  --bg: #010125; --surface: #0c0f3a; --fg: #eef0fa; --muted: #9aa0bd; --line: #252a55;
+  --accent: #ffb23e; --life: #a3b2ff; --build: #5fd3a8; --warn-bg: #2e2410; --code-bg: #171c45;
   color-scheme: dark;
 }
 body {
@@ -59,8 +59,9 @@ body {
   padding-block: 40px 72px;
 }
 .page { max-width: 44rem; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
-header.top { display: flex; flex-direction: column; gap: 14px; border-bottom: 2px solid var(--fg); padding-bottom: 28px; }
-.lang { align-self: flex-end; font-size: 0.85rem; }
+header.top { position: relative; display: flex; flex-direction: column; gap: 14px; border-bottom: 2px solid var(--fg); padding-bottom: 28px; }
+.logo { border-radius: 20px; display: block; }
+.lang { position: absolute; top: 0; right: 0; font-size: 0.85rem; }
 .kicker { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent); letter-spacing: 0.04em; }
 h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 8vw, 3.4rem); line-height: 1.2; margin: 0; letter-spacing: -0.01em; }
 .byline { margin: 0; font-size: 0.9rem; color: var(--muted); }
@@ -108,6 +109,7 @@ footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 0.85re
 <div class="page">
 
 <header class="top">
+  <img class="logo" src="icon.png" alt="" width="84" height="84">
   <nav class="lang"><a href="ja.html">日本語</a></nav>
   <div class="kicker">Development and operations with life in the loop</div>
   <h1>LifeLoopOps</h1>
