@@ -1,18 +1,23 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>LifeLoopOps</title>
-<meta name="description" content="人が生活し、働いているその場に、常時稼働のエージェントが自分から入り込む。そこで拾ったものを起点に、開発と運用をひと続きの輪として回すやり方です。">
-<link rel="canonical" href="https://lsklab.com/lifeloopops/">
+<meta name="description" content="An always-on agent steps into the places where a person lives and works. What it picks up there becomes the starting point, and development and operations run as one continuous loop.">
+<link rel="canonical" href="https://lifeloopops.github.io/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LifeLoopOps">
-<meta property="og:description" content="人が生活し、働いているその場に、常時稼働のエージェントが自分から入り込む。そこで拾ったものを起点に、開発と運用をひと続きの輪として回すやり方です。">
-<meta property="og:url" content="https://lsklab.com/lifeloopops/">
+<meta property="og:description" content="An always-on agent steps into the places where a person lives and works. What it picks up there becomes the starting point, and development and operations run as one continuous loop.">
+<meta property="og:url" content="https://lifeloopops.github.io/">
 <meta property="og:site_name" content="LifeLoopOps">
-<meta property="og:locale" content="ja_JP">
-<meta name="twitter:card" content="summary">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lifeloopops.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.png">
 <meta name="twitter:creator" content="@letsspeak">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -96,400 +101,403 @@ button.copy:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 .share-url { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); overflow-wrap: anywhere; user-select: all; }
 footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 0.85rem; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }
 </style>
+<style>body { line-height: 1.65; } h1 { letter-spacing: -0.02em; }</style>
 </head>
 <body>
 
 <div class="page">
 
 <header class="top">
-  <nav class="lang"><a href="en.html">English</a></nav>
-  <div class="kicker">Life-in-the-Loop で回す開発と運用</div>
+  <nav class="lang"><a href="ja.html">日本語</a></nav>
+  <div class="kicker">Development and operations with life in the loop</div>
   <h1>LifeLoopOps</h1>
-  <p class="lede">人が生活し、働いているその場に、常時稼働のエージェントが自分から入り込む。そこで拾ったものを起点に、開発と運用をひと続きの輪として回すやり方です。</p>
-  <p class="byline">著者：<strong>@letsspeak</strong>（<a href="https://github.com/letsspeak">GitHub</a>、<a href="https://twitter.com/letsspeak">Twitter</a>）</p>
+  <p class="lede">An always-on agent steps into the places where a person lives and works. What it picks up there becomes the starting point, and development and operations run as one continuous loop from it.</p>
+  <p class="byline">By <strong>@letsspeak</strong> (<a href="https://github.com/letsspeak">GitHub</a>, <a href="https://twitter.com/letsspeak">Twitter</a>)</p>
 </header>
 
 <section class="summary">
-  <h2>一言でいうと</h2>
+  <h2>In short</h2>
   <ul>
-    <li><strong>起点は生活。</strong>仕様書でも作業机でもなく、人が動いている日常からすべてが始まる。</li>
-    <li><strong>エージェントからプッシュする。</strong>生活側エージェントは呼ばれるのを待たず、報告、提案、判断の依頼を自分から人に届ける。</li>
-    <li><strong>エージェントは 2 種類。</strong><span class="who-life">生活側</span>が拾って形にして見守り、<span class="who-build">作り込む側</span>が製品に育てて直す。</li>
-    <li><strong>関門は人。</strong>何を進めるか、どこまで権限を渡すかは人が決める。</li>
-    <li><strong>受け渡し口は 1 つ。</strong>エージェント同士のやりとりは、非公開のリポジトリ 1 つに集める。</li>
+    <li><strong>Life is the starting point.</strong> Everything begins in the day a person is actually living, not in a spec or at a desk.</li>
+    <li><strong>The agent pushes.</strong> The life-side agent does not wait to be called. It brings reports, proposals and requests for a decision to the person.</li>
+    <li><strong>There are two kinds of agent.</strong> The <span class="who-life">life-side agent</span> picks things up, shapes them and watches over them. The <span class="who-build">builder agent</span> turns them into a product and fixes it.</li>
+    <li><strong>The person holds the gate.</strong> The person decides what goes forward and how much access each agent gets.</li>
+    <li><strong>There is one handoff point.</strong> Everything the agents pass to each other goes through a single private repository.</li>
   </ul>
-  <p class="note">これは 1 人の実践から生まれた提案です。2026 年 11 月時点では取り決めの段階で、長く回した実績はまだありません。確かめていない点は最後にまとめています。</p>
+  <p class="note">This is a proposal that grew out of one person's practice. As of November 2026 it is an agreed design, not a method with a long track record. The open questions are listed at the end.</p>
 </section>
 
 <section>
-  <div class="part">1　考え方</div>
-  <h2>なぜ生活が起点なのか</h2>
-  <p>人には体があり、一日のほとんどを机の外で過ごします。通勤し、仕事をし、家事をし、人と話します。アイデアも、不満も、不具合の発見も、その動いている最中に起きます。机に向かって仕様を書く時間に起きるわけではありません。</p>
-  <p>これまでの開発手法は、人が道具のある場所へ行くことを前提にしていました。エディタを開く、チャット部屋に入る、チケットを書く。行くまでの間に、思いついたことの多くは消えます。</p>
-  <p>常時稼働のエージェントがスマホの中にいると、向きが逆になります。エージェントのほうが人の生活に入ってきます。歩きながら一言話せば、アプリを閉じたあとも作業が続きます。古いアイデアを渡して優先度を整理させたら、2 日で 7 つの PoC が立ち上がった、というのがこの手法の出発点です。</p>
-  <p><strong>LifeLoopOps</strong> は、この「生活に入り込んだエージェント」を開発と運用の入口に据えます。受け渡しの手順や鍵の管理は、その入口を安全に保つための裏方です。</p>
+  <div class="part">1 &nbsp; The idea</div>
+  <h2>Why life is the starting point</h2>
+  <p>People have bodies, and they spend most of the day away from a desk. They commute, work, do chores and talk to other people. Ideas, frustrations and bug sightings happen while they are moving. They do not happen during the hour set aside for writing a spec.</p>
+  <p>Development methods so far have assumed that the person goes to the tool. You open the editor, enter the chat room, write the ticket. Much of what came to mind is gone by the time you get there.</p>
+  <p>An always-on agent in your phone reverses the direction. The agent comes into your life. You say one sentence while walking, and the work continues after you close the app. This method started when one person handed a pile of old ideas to such an agent, asked it to sort them by priority, and had about seven proofs of concept running within two days.</p>
+  <p><strong>LifeLoopOps</strong> puts that life-embedded agent at the entrance to development and operations. The handoff procedure and the key management exist to keep that entrance safe. They are the backstage.</p>
 
-  <h3>エージェントのほうからプッシュしてくる</h3>
-  <p>これまでの道具は、人が開いて頼むまで何もしませんでした。生活側エージェントは違います。自分から人に声をかけます。進み具合の報告、次にやることの提案、判断の依頼、異常の知らせが、通知として人の生活の中に届きます。人は歩きながら一言返すだけで、輪が一つ進みます。</p>
-  <p><strong>LifeLoopOps</strong> の中心にあるのは、このエージェントから人へのプッシュです。人が思い出して確認しにいく必要がないので、輪が止まりません。人が道具を引き出す向きから、エージェントが人に押してくる向きへ変わったこと。これがこの手法を成り立たせている変化です。</p>
+  <h3>The agent pushes to you</h3>
+  <p>Tools used to do nothing until a person opened them and asked. A life-side agent is different. It speaks first. Progress reports, proposals for the next step, requests for a decision and alerts arrive as notifications in the middle of the person's day. The person answers in a sentence while walking, and the loop moves forward one step.</p>
+  <p>This push from the agent to the person is the centre of <strong>LifeLoopOps</strong>. The person never has to remember to go and check, so the loop does not stall. The direction has changed from a person pulling on a tool to an agent pushing to a person. That change is what makes the method work.</p>
 
-  <h3>Human-in-the-Loop との違い</h3>
-  <p>Human-in-the-Loop は、機械の処理の途中に人の確認を挟む考え方です。人は確認係として呼ばれます。Life-in-the-Loop では、人の生活そのものが輪の一部です。人は呼ばれるのを待たず、暮らしの中で気づいたことをその場で流し込みます。</p>
+  <h3>How this differs from human-in-the-loop</h3>
+  <p>Human-in-the-loop places a human check in the middle of a machine process. The human is called in as a reviewer. With life in the loop, the person's life is itself part of the loop. The person does not wait to be called. They feed in what they notice, where and when they notice it.</p>
 </section>
 
 <section>
-  <h2>輪の回り方</h2>
+  <h2>How the loop turns</h2>
   <figure>
     <div class="scroll">
-    <svg viewBox="0 0 760 320" role="img" aria-label="生活で拾う、PoC にする、人が選ぶ、サービスにする、本番で動く、見守り声を拾う、の 6 つが輪になって生活に戻る。">
+    <svg viewBox="0 0 760 320" role="img" aria-label="Six steps form a loop that returns to daily life: pick up in life, make a proof of concept, choose what goes forward, make it a service, run in production, watch and listen.">
       <defs>
         <marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
         </marker>
       </defs>
       <rect x="40" y="40" width="180" height="60" fill="none" style="stroke:var(--life)" stroke-width="2.5"/>
-      <text x="130" y="66" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">生活で拾う</text>
-      <text x="130" y="84" font-size="11" text-anchor="middle" fill="currentColor">生活側エージェント</text>
+      <text x="130" y="66" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Pick up in life</text>
+      <text x="130" y="84" font-size="11" text-anchor="middle" fill="currentColor">life-side agent</text>
 
       <rect x="290" y="40" width="180" height="60" fill="none" style="stroke:var(--life)" stroke-width="2.5"/>
-      <text x="380" y="66" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">PoC にする</text>
-      <text x="380" y="84" font-size="11" text-anchor="middle" fill="currentColor">生活側エージェント</text>
+      <text x="380" y="66" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Make a PoC</text>
+      <text x="380" y="84" font-size="11" text-anchor="middle" fill="currentColor">life-side agent</text>
 
       <rect x="540" y="40" width="180" height="60" fill="none" stroke="currentColor" stroke-width="2.5"/>
-      <text x="630" y="66" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">進めるものを選ぶ</text>
-      <text x="630" y="84" font-size="11" text-anchor="middle" fill="currentColor">人</text>
+      <text x="630" y="66" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Choose what goes on</text>
+      <text x="630" y="84" font-size="11" text-anchor="middle" fill="currentColor">person</text>
 
       <rect x="540" y="220" width="180" height="60" fill="none" style="stroke:var(--build)" stroke-width="2.5"/>
-      <text x="630" y="246" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">サービスにする</text>
-      <text x="630" y="264" font-size="11" text-anchor="middle" fill="currentColor">作り込む側エージェント</text>
+      <text x="630" y="246" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Make it a service</text>
+      <text x="630" y="264" font-size="11" text-anchor="middle" fill="currentColor">builder agent</text>
 
       <rect x="290" y="220" width="180" height="60" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <text x="380" y="246" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">本番で動く</text>
-      <text x="380" y="264" font-size="11" text-anchor="middle" fill="currentColor">人が使う</text>
+      <text x="380" y="246" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Run in production</text>
+      <text x="380" y="264" font-size="11" text-anchor="middle" fill="currentColor">people use it</text>
 
       <rect x="40" y="220" width="180" height="60" fill="none" style="stroke:var(--life)" stroke-width="2.5"/>
-      <text x="130" y="246" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">見守る、声を拾う</text>
-      <text x="130" y="264" font-size="11" text-anchor="middle" fill="currentColor">生活側エージェント</text>
+      <text x="130" y="246" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Watch and listen</text>
+      <text x="130" y="264" font-size="11" text-anchor="middle" fill="currentColor">life-side agent</text>
 
       <line x1="220" y1="70" x2="288" y2="70" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah1)"/>
       <line x1="470" y1="70" x2="538" y2="70" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah1)"/>
       <line x1="630" y1="100" x2="630" y2="218" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah1)"/>
-      <text x="620" y="164" font-size="11" text-anchor="end" fill="currentColor">引き継ぎ</text>
+      <text x="620" y="164" font-size="11" text-anchor="end" fill="currentColor">handoff</text>
       <line x1="540" y1="250" x2="472" y2="250" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah1)"/>
       <line x1="290" y1="250" x2="222" y2="250" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah1)"/>
       <line x1="130" y1="220" x2="130" y2="102" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah1)"/>
-      <text x="142" y="164" font-size="11" fill="currentColor">また生活の中へ</text>
+      <text x="142" y="164" font-size="11" fill="currentColor">back into daily life</text>
       <text x="380" y="168" font-size="20" font-weight="700" text-anchor="middle" fill="currentColor" opacity="0.35">LifeLoop</text>
     </svg>
     </div>
-    <figcaption>枠の色は担当を表します。生活側エージェントが 3 か所、人が 1 か所、作り込む側エージェントが 1 か所を受け持ち、輪は生活に戻ります。</figcaption>
+    <figcaption>The outline colour shows who owns each step. The life-side agent owns three, the person one, the builder agent one, and the loop returns to daily life.</figcaption>
   </figure>
   <ol>
-    <li><strong>生活で拾う。</strong>人が思いついたことを、その場でスマホのエージェントに話す。エージェントは整理し、優先度の案を出す。エージェントのほうから「次はこれを進めますか」とプッシュしてくることもある。</li>
-    <li><strong>PoC にする。</strong>生活側エージェントが、動くことを確かめられるものを作る。作り込みはしない。</li>
-    <li><strong>進めるものを選ぶ。</strong>人が、どの PoC をサービスにするかを決める。</li>
-    <li><strong>サービスにする。</strong>作り込む側エージェントが PoC を引き継ぎ、設計を見直して製品にする。</li>
-    <li><strong>本番で動く。</strong>人が実際に使う。</li>
-    <li><strong>見守る、声を拾う。</strong>生活側エージェントが本番を見張り、人が暮らしの中で口にした不具合や要望を整理して、作り込む側に渡す。</li>
+    <li><strong>Pick up in life.</strong> The person tells the agent in their phone what came to mind, on the spot. The agent organises it and proposes priorities. Sometimes the agent pushes first: "Shall I start on this one next?"</li>
+    <li><strong>Make a proof of concept.</strong> The life-side agent builds something that shows the idea works. It does not polish.</li>
+    <li><strong>Choose what goes forward.</strong> The person decides which proofs of concept become services.</li>
+    <li><strong>Make it a service.</strong> The builder agent takes over the proof of concept, reviews the design and turns it into a product.</li>
+    <li><strong>Run in production.</strong> People actually use it.</li>
+    <li><strong>Watch and listen.</strong> The life-side agent watches production. It also organises the bugs and requests the person mentions in passing and hands them to the builder agent.</li>
   </ol>
 </section>
 
 <section>
-  <h2>3 者の役割</h2>
+  <h2>The three roles</h2>
   <div class="scroll">
   <table>
-    <thead><tr><th></th><th>受け持つこと</th><th>向いている理由</th><th>持たせないもの</th></tr></thead>
+    <thead><tr><th></th><th>Owns</th><th>Why it fits</th><th>Does not get</th></tr></thead>
     <tbody>
-      <tr><th><span class="who-life">生活側エージェント</span></th><td>拾う、PoC にする、見守る、声を整理する</td><td>常時稼働で、スマホからいつでも話せる</td><td>製品のコードの書き換え、デプロイ、本番への書き込み</td></tr>
-      <tr><th><span class="who-build">作り込む側エージェント</span></th><td>PoC を製品にする、不具合を直す</td><td>コードと開発環境を深く扱える</td><td>常時の監視。呼ばれたときだけ動く</td></tr>
-      <tr><th>人</th><td>進めるものを選ぶ、権限を渡す、デプロイを承認する</td><td>責任を負えるのは人だけ</td><td>—</td></tr>
+      <tr><th><span class="who-life">Life-side agent</span></th><td>Picking up, proofs of concept, watching, organising what the person says</td><td>Always on, reachable from a phone at any moment</td><td>Rights to change product code, deploy, or write to production</td></tr>
+      <tr><th><span class="who-build">Builder agent</span></th><td>Turning a proof of concept into a product, fixing bugs</td><td>Works deeply with code and a development environment</td><td>Constant monitoring. It runs only when called</td></tr>
+      <tr><th>Person</th><td>Choosing what goes forward, granting access, approving deploys</td><td>Only a person can be accountable</td><td>—</td></tr>
     </tbody>
   </table>
   </div>
-  <p>ゼロからイチを生活側に任せるのは、思いついた瞬間に手元で頼めることが、その段階ではいちばん効くからです。</p>
-  <p>PoC は動くことを確かめるのが目的なので、認証やデータの持ち方は雑でかまいません。そのかわり、作り込む側は引き継いだときに「PoC を土台にせず作り直すほうが早い」と提案することがあります。採るかどうかは人が決めます。</p>
+  <p>Zero-to-one belongs to the life-side agent because, at that stage, being able to ask the moment an idea arrives matters more than anything else.</p>
+  <p>A proof of concept exists to show that something works, so rough authentication and data handling are fine. In return, the builder agent may say on takeover that rebuilding is faster than building on the proof of concept. The person decides whether to accept that.</p>
 </section>
 
 <section>
-  <h2>3 つの原則</h2>
+  <h2>Three principles</h2>
   <ol>
-    <li><strong>起点は生活に置く。</strong>要望も不具合も、人が暮らしの中で話した言葉から始める。整理するときは、人の元の言葉を残す。</li>
-    <li><strong>関門は人が持つ。</strong>何をサービスにするか、どの権限を渡すか、いつ本番に出すかは、エージェントに決めさせない。</li>
-    <li><strong>相手のエージェントを信用しすぎない。</strong>渡す鍵は届く範囲を最小にし、相手の報告は命令ではなく情報として扱い、裏を取ってから動く。</li>
+    <li><strong>Start from life.</strong> Requests and bug reports begin with words the person said in the course of their day. When an agent organises them, it keeps the person's original words.</li>
+    <li><strong>The person holds the gate.</strong> Agents do not decide what becomes a service, which access is granted, or when something goes to production.</li>
+    <li><strong>Do not over-trust the other agent.</strong> Keep each key's reach as small as possible. Treat the other agent's reports as information, not orders, and verify before acting.</li>
   </ol>
 </section>
 
 <section>
-  <div class="part">2　仕組み</div>
-  <h2>受け渡し口を 1 つにする</h2>
-  <p>生活側エージェントは、人の生活に近いぶん、外のクラウドで動いています。製品のコードを置く場所を、そこに直接開けたくはありません。そこで、あいだに非公開のリポジトリを 1 つ置き、郵便受けとして使います。</p>
+  <div class="part">2 &nbsp; The mechanics</div>
+  <h2>One handoff point</h2>
+  <p>Because the life-side agent sits close to the person's life, it runs in someone else's cloud. You do not want to open the place where product code lives directly to it. So a single private repository sits in between and serves as a mailbox.</p>
   <figure>
     <div class="scroll">
-    <svg viewBox="0 0 840 370" role="img" aria-label="生活側エージェントは郵便受けにだけ書き込み、作り込む側エージェントがそこから取り込んで製品のリポジトリに入れる。生活側は本番を読み取りだけで見守る。">
+    <svg viewBox="0 0 840 370" role="img" aria-label="The life-side agent pushes to the person and writes only to the mailbox. The builder agent takes work from the mailbox into the product repository. The life-side agent watches production read-only.">
       <defs>
         <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
         </marker>
       </defs>
       <rect x="455" y="122" width="375" height="232" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity="0.6"/>
-      <text x="820" y="140" font-size="11" text-anchor="end" fill="currentColor" opacity="0.8">生活側が書き込めない範囲</text>
+      <text x="820" y="140" font-size="11" text-anchor="end" fill="currentColor" opacity="0.8">life-side agent cannot write here</text>
 
       <rect x="20" y="30" width="140" height="50" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <text x="90" y="52" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">人</text>
-      <text x="90" y="69" font-size="11" text-anchor="middle" fill="currentColor">スマホ</text>
+      <text x="90" y="52" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Person</text>
+      <text x="90" y="69" font-size="11" text-anchor="middle" fill="currentColor">phone</text>
 
       <rect x="20" y="150" width="140" height="64" fill="none" style="stroke:var(--life)" stroke-width="2.5"/>
-      <text x="90" y="178" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">生活側</text>
-      <text x="90" y="196" font-size="11" text-anchor="middle" fill="currentColor">クラウドで常時稼働</text>
+      <text x="90" y="178" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Life-side agent</text>
+      <text x="90" y="196" font-size="11" text-anchor="middle" fill="currentColor">always on, in a cloud</text>
 
       <rect x="235" y="150" width="170" height="64" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <text x="320" y="172" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">郵便受け</text>
-      <text x="320" y="189" font-size="11" text-anchor="middle" fill="currentColor">コード：PoC</text>
-      <text x="320" y="204" font-size="11" text-anchor="middle" fill="currentColor">Issue：連絡</text>
+      <text x="320" y="172" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Mailbox</text>
+      <text x="320" y="189" font-size="11" text-anchor="middle" fill="currentColor">code: PoCs</text>
+      <text x="320" y="204" font-size="11" text-anchor="middle" fill="currentColor">issues: messages</text>
 
       <rect x="480" y="150" width="140" height="64" fill="none" style="stroke:var(--build)" stroke-width="2.5"/>
-      <text x="550" y="178" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">作り込む側</text>
-      <text x="550" y="196" font-size="11" text-anchor="middle" fill="currentColor">手元の開発機</text>
+      <text x="550" y="178" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Builder agent</text>
+      <text x="550" y="196" font-size="11" text-anchor="middle" fill="currentColor">local dev machine</text>
 
       <rect x="695" y="150" width="125" height="64" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <text x="757" y="178" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">製品のリポジトリ</text>
-      <text x="757" y="196" font-size="11" text-anchor="middle" fill="currentColor">非公開、接続を制限</text>
+      <text x="757" y="178" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Product repo</text>
+      <text x="757" y="196" font-size="11" text-anchor="middle" fill="currentColor">private, restricted</text>
 
       <rect x="695" y="284" width="125" height="50" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <text x="757" y="314" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">本番</text>
+      <text x="757" y="314" font-size="13" font-weight="700" text-anchor="middle" fill="currentColor">Production</text>
 
       <line x1="60" y1="80" x2="60" y2="148" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah2)"/>
-      <text x="52" y="118" font-size="11" text-anchor="end" fill="currentColor">話す</text>
+      <text x="52" y="118" font-size="11" text-anchor="end" fill="currentColor">talk</text>
       <line x1="120" y1="150" x2="120" y2="90" style="stroke:var(--life)" stroke-width="3"/>
       <polygon points="120,80 113,92 127,92" style="fill:var(--life)"/>
-      <text x="132" y="112" font-size="12" font-weight="700" fill="currentColor">プッシュ</text>
-      <text x="132" y="128" font-size="11" fill="currentColor">報告、提案、判断の依頼</text>
+      <text x="132" y="112" font-size="12" font-weight="700" fill="currentColor">push</text>
+      <text x="132" y="128" font-size="11" fill="currentColor">reports, proposals, decisions</text>
 
       <polyline points="160,55 550,55 550,148" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah2)"/>
-      <text x="355" y="47" font-size="11" text-anchor="middle" fill="currentColor">呼ぶ、承認する</text>
+      <text x="355" y="47" font-size="11" text-anchor="middle" fill="currentColor">call, approve</text>
 
       <line x1="160" y1="182" x2="233" y2="182" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah2)"/>
-      <text x="197" y="174" font-size="11" text-anchor="middle" fill="currentColor">push、Issue</text>
+      <text x="197" y="174" font-size="11" text-anchor="middle" fill="currentColor">code, issues</text>
 
       <line x1="405" y1="172" x2="478" y2="172" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah2)"/>
-      <text x="442" y="164" font-size="11" text-anchor="middle" fill="currentColor">取り込む</text>
+      <text x="442" y="164" font-size="11" text-anchor="middle" fill="currentColor">take in</text>
       <line x1="480" y1="196" x2="407" y2="196" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah2)"/>
-      <text x="442" y="211" font-size="11" text-anchor="middle" fill="currentColor">返事を書く</text>
+      <text x="442" y="211" font-size="11" text-anchor="middle" fill="currentColor">reply</text>
 
       <line x1="620" y1="182" x2="693" y2="182" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah2)"/>
-      <text x="657" y="174" font-size="11" text-anchor="middle" fill="currentColor">push</text>
+      <text x="657" y="174" font-size="11" text-anchor="middle" fill="currentColor">commit</text>
 
       <line x1="757" y1="214" x2="757" y2="282" stroke="currentColor" stroke-width="1.5" marker-end="url(#ah2)"/>
-      <text x="747" y="252" font-size="11" text-anchor="end" fill="currentColor">デプロイ（人が承認）</text>
+      <text x="747" y="252" font-size="11" text-anchor="end" fill="currentColor">deploy (person approves)</text>
 
       <polyline points="90,214 90,309 693,309" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#ah2)"/>
-      <text x="270" y="301" font-size="11" text-anchor="middle" fill="currentColor">読み取りだけで見守る</text>
+      <text x="270" y="301" font-size="11" text-anchor="middle" fill="currentColor">watches, read-only</text>
     </svg>
     </div>
-    <figcaption>太い色付きの矢印が、この手法の中心です。生活側エージェントは呼ばれるのを待たず、自分から人にプッシュします。そのエージェントが書き込める先は郵便受けだけです。製品のリポジトリと本番への書き込みは、作り込む側と人の承認を通ります。点線の矢印は読み取りだけの経路です。</figcaption>
+    <figcaption>The thick coloured arrow is the centre of the method. The life-side agent does not wait to be called. It pushes to the person. The only place that agent can write is the mailbox. Writes to the product repository and to production go through the builder agent and the person's approval. The dashed arrow is a read-only path.</figcaption>
   </figure>
 
-  <h3>PoC ごとに分けず、1 つにまとめる</h3>
+  <h3>One mailbox, not one per proof of concept</h3>
   <div class="scroll">
   <table>
-    <thead><tr><th></th><th>1 つにまとめる（勧める形）</th><th>PoC ごとに増やす</th></tr></thead>
+    <thead><tr><th></th><th>One mailbox (recommended)</th><th>One repository per PoC</th></tr></thead>
     <tbody>
-      <tr><th>新しい PoC</th><td>エージェントがフォルダかブランチを足すだけ。人の作業はなし</td><td>人がリポジトリを作り、鍵を登録し直す</td></tr>
-      <tr><th>鍵</th><td>1 本</td><td>リポジトリごとに 1 本</td></tr>
-      <tr><th>連絡を見る場所</th><td>1 か所。サービス名のラベルで分ける</td><td>リポジトリごとに散らばる</td></tr>
-      <tr><th>侵害されたとき</th><td>中の全 PoC に書き込まれる</td><td>1 つの PoC だけ</td></tr>
+      <tr><th>A new PoC</th><td>The agent adds a folder or a branch. The person does nothing</td><td>The person creates a repository and registers a key again</td></tr>
+      <tr><th>Keys</th><td>One</td><td>One per repository</td></tr>
+      <tr><th>Where messages live</th><td>One place, separated by a label per service</td><td>Scattered across repositories</td></tr>
+      <tr><th>If compromised</th><td>Every PoC in it can be overwritten</td><td>Only one PoC</td></tr>
     </tbody>
   </table>
   </div>
-  <p>決め手は 1 行目です。生活側エージェントは暮らしの中で次々に PoC を作るので、そのたびに人の設定作業が挟まると輪が止まります。侵害されたときの範囲は広がりますが、製品の本体は別の場所にあり、作り込む側は移す前に中身を確かめます。</p>
+  <p>The first row decides it. A life-side agent produces proofs of concept one after another in the course of daily life. If each one needs setup work from the person, the loop stalls. The blast radius is wider, but the product itself lives elsewhere, and the builder agent inspects everything before moving it.</p>
 
-  <h3>コードの置き方は 2 通り</h3>
+  <h3>Two ways to lay out the code</h3>
   <div class="scroll">
   <table>
-    <thead><tr><th></th><th>main 一本でフォルダ分け</th><th>PoC ごとにブランチ</th></tr></thead>
+    <thead><tr><th></th><th>One main branch, a folder per PoC</th><th>A branch per PoC</th></tr></thead>
     <tbody>
-      <tr><th>向いている場合</th><td>PoC が軽く、全体を一覧したい</td><td>PoC ごとに履歴が育っていて、そのまま残したい</td></tr>
-      <tr><th>見るとき</th><td>切り替えなしで全部見える</td><td>PoC ごとにブランチを切り替える</td></tr>
-      <tr><th>製品に移すとき</th><td>フォルダを取り出して新しいリポジトリにする。細かい履歴は引き継がないと割り切る</td><td>ブランチ 1 本がそのままリポジトリ 1 つになる</td></tr>
+      <tr><th>Fits when</th><td>The PoCs are light and you want to see them all at once</td><td>Each PoC has history worth keeping</td></tr>
+      <tr><th>Browsing</th><td>Everything is visible without switching</td><td>You switch branches per PoC</td></tr>
+      <tr><th>Moving to the product repo</th><td>Lift the folder into a new repository and accept that fine-grained history stays behind</td><td>One branch becomes one repository as is</td></tr>
     </tbody>
   </table>
   </div>
-  <p>PoC が動くことを確かめる段階のものなら、main 一本で足ります。</p>
+  <p>If the proofs of concept only need to show that something works, a single main branch is enough.</p>
 </section>
 
 <section>
-  <h2>PoC を引き継ぐ手順</h2>
+  <h2>Handing over a proof of concept</h2>
   <ol>
-    <li>生活側エージェントに下の依頼文を渡し、公開鍵を出してもらう。</li>
-    <li>空の非公開リポジトリを作る。</li>
-    <li>そのリポジトリだけに効く書き込み用の鍵（GitHub ならデプロイキー）として、公開鍵を登録する。</li>
-    <li>エージェントに「登録した」と伝え、リポジトリの場所を教える。</li>
-    <li>エージェントが PoC と引き継ぎ書を push する。</li>
-    <li>作り込む側エージェントが取り込み、鍵の混入や不審なスクリプトがないか確かめてから動かす。</li>
-    <li>人が進めると決めた PoC を、作り込む側が製品のリポジトリに移す。</li>
+    <li>Give the life-side agent the brief below and have it show you a public key.</li>
+    <li>Create an empty private repository.</li>
+    <li>Register the public key as a write key scoped to that repository only (a deploy key on GitHub).</li>
+    <li>Tell the agent the key is registered and where the repository is.</li>
+    <li>The agent pushes the proofs of concept and a handover note for each.</li>
+    <li>The builder agent takes them in and checks for leaked secrets and suspicious scripts before running anything.</li>
+    <li>The builder agent moves the ones the person chose into the product repository.</li>
   </ol>
-  <p>鍵はエージェントの環境の中で作らせます。人が受け取るのは公開鍵だけなので、チャットに秘密の値が流れません。</p>
+  <p>The key is generated inside the agent's own environment. The person only ever receives the public key, so no secret passes through the chat.</p>
 
-  <h3>生活側エージェントに渡す依頼文</h3>
+  <h3>Brief for the life-side agent</h3>
   <div class="prompt">
-    <div class="prompt-bar"><span><code>&lt;ユーザー名&gt;</code> を書き換えて使います</span><button class="copy" id="copy-prompt" type="button">コピー</button></div>
-<pre id="prompt-text">PoC を引き継ぐために、GitHub の非公開リポジトリへ push してもらいます。
-push 先のリポジトリは、あとで私から伝えます。
+    <div class="prompt-bar"><span>Replace <code>&lt;user&gt;</code> before use</span><button class="copy" id="copy-prompt" type="button">Copy</button></div>
+<pre id="prompt-text">I want you to hand over the proofs of concept by pushing them to a
+private GitHub repository. I will tell you which repository later.
 
-1. この VM の中で、今回専用の SSH 鍵（ed25519）を新しく作る。
-   秘密鍵は VM の外に出さず、チャットにも表示しない。公開鍵だけを私に見せる
-2. 私が「公開鍵を登録した」と伝え、push 先のリポジトリ
-   （git@github.com:&lt;ユーザー名&gt;/&lt;リポジトリ名&gt;.git の形）を教えるまで待つ。
-   それまでは push 先を推測して作業を進めない
-3. 伝えられたリポジトリの main ブランチに、すべての PoC を push する。
-   PoC ごとに直下のフォルダを 1 つ作り、その中にコードを置く
-   （フォルダ名は PoC の名前）。強制 push はしない
-4. 各フォルダの直下に HANDOVER.md を置く。中身は次のとおり
-   - 何を作ろうとしているか、誰のどんな困りごとを解くか
-   - いま動くところ、動かないところ、まだ手を付けていないところ
-   - 手元で動かす手順（必要なコマンドとバージョン）
-   - 設計で決めたことと、その理由。捨てた案とその理由
-   - 使っている外部サービス、作ったアカウント、デプロイ先の URL
-   - 必要な環境変数や鍵の「名前」と入手先（値は書かない）
-   - 次にやるとよいと考えていること
-5. 鍵、パスワード、トークンの値をコミットに入れない。
-   過去のコミットに入っていたら、push する前に私に知らせる
-6. 終わったら、push したフォルダの一覧を教える</pre>
+1. Inside this VM, generate a new SSH key (ed25519) for this purpose only.
+   Do not let the private key leave the VM and do not print it in chat.
+   Show me the public key only.
+2. Wait until I say "the public key is registered" and give you the
+   repository (in the form git@github.com:&lt;user&gt;/&lt;repo&gt;.git).
+   Do not guess the destination or proceed before that.
+3. Push every proof of concept to the main branch of that repository.
+   Create one top-level folder per proof of concept, named after it,
+   and put its code inside. Do not force-push.
+4. Put a HANDOVER.md at the top of each folder, covering:
+   - What it is trying to build, and whose problem it solves
+   - What works now, what does not, and what has not been started
+   - How to run it locally (commands and versions)
+   - Design decisions and the reasons. Rejected options and the reasons
+   - External services used, accounts created, and deployed URLs
+   - The names of required environment variables and keys, and where
+     to obtain them (never the values)
+   - What you think should be done next
+5. Do not commit the values of keys, passwords or tokens.
+   If any are in past commits, tell me before pushing.
+6. When finished, list the folders you pushed.</pre>
   </div>
-  <p>引き継ぎ書を書かせるのは、人とエージェントの会話や判断の経緯が、そのエージェントの中にしか残らないからです。コードだけ受け取ると「なぜこうしたか」が抜けます。</p>
+  <p>The handover note matters because the conversation and the reasoning behind each decision exist only inside that agent. Code alone does not carry the reasons.</p>
 </section>
 
 <section>
-  <h2>輪を閉じる連絡板</h2>
-  <p>サービスが動き出したあとの不具合や要望は、人が暮らしの中で生活側エージェントに話し、エージェントが Issue に整理します。見守り中にエージェントが見つけた異常も同じ場所に書きます。製品のコードは郵便受けに出ません。</p>
+  <h2>The message board that closes the loop</h2>
+  <p>Once a service is running, the person mentions bugs and requests to the life-side agent in the course of their day, and the agent organises them into issues. Anything the agent notices while watching production goes to the same place. Product code never appears in the mailbox.</p>
   <ol>
-    <li>人が話す。例：「あの画面、保存を押しても反応しないことがある」</li>
-    <li>生活側エージェントが整理して Issue を立て、人に知らせる。</li>
-    <li>作り込む側エージェントが、呼ばれたときに未対応の Issue を読み、ログなどで裏を取って直す。</li>
-    <li>作り込む側が Issue に、直した内容と確かめ方を書き戻す。</li>
-    <li>人か生活側エージェントが確かめて閉じる。</li>
+    <li>The person speaks. For example: "That screen sometimes ignores the save button."</li>
+    <li>The life-side agent organises it, opens an issue and tells the person.</li>
+    <li>When called, the builder agent reads the open issues, verifies them against logs and fixes the code.</li>
+    <li>The builder agent writes back on the issue what changed and how to check it.</li>
+    <li>The person or the life-side agent checks and closes it.</li>
   </ol>
-  <p>逆向きにも使います。作り込む側はサービスを出すたびに、何を見るか、どこから異常とするかを書いた見守りの指示を置きます。</p>
+  <p>It also runs the other way. Each time the builder agent ships a service, it leaves watch instructions: what to look at and what counts as abnormal.</p>
 
-  <h3>Issue の書き方</h3>
+  <h3>How issues are written</h3>
   <ul>
-    <li><strong>1 件 1 Issue。</strong>複数の話を混ぜない。</li>
-    <li><strong>サービス名をラベルで付ける。</strong></li>
-    <li><strong>事実と人の言葉を分ける。</strong>何が起きたか、再現の手順、証拠を書く。人が言った言葉はそのまま引用する。</li>
-    <li><strong>優先度は人が言ったものだけ。</strong>エージェントが勝手に付けない。</li>
+    <li><strong>One topic per issue.</strong></li>
+    <li><strong>A label for the service.</strong></li>
+    <li><strong>Facts kept apart from the person's words.</strong> State what happened, how to reproduce it and the evidence. Quote what the person said verbatim.</li>
+    <li><strong>Priority only if the person stated it.</strong> The agent does not invent one.</li>
   </ul>
-  <p>人の元の言葉が残っていると、整理がずれていたときに作り込む側が気づけます。</p>
+  <p>With the person's original words on the issue, the builder agent can tell when the summary has drifted.</p>
 </section>
 
 <section>
-  <h2>セキュリティの考え方</h2>
-  <p>生活側エージェントの環境が乗っ取られた場合まで想定して、渡す鍵でできることを最小にします。</p>
+  <h2>Security</h2>
+  <p>Assume the life-side agent's environment may be taken over, and make each key able to do as little as possible.</p>
 
-  <h3>製品のリポジトリを生活側に開けない</h3>
-  <p>製品のリポジトリが接続元の IP を絞っている場合、生活側エージェントに直接 push させるには、その IP を通す必要があります。IP が変わるたびにエージェント自身に書き換えさせる方法は、次の理由で勧めません。</p>
+  <h3>Keep the product repository closed to the life-side agent</h3>
+  <p>If the product repository restricts access by source IP, letting the life-side agent push to it directly means allowing that agent's IP. Letting the agent update the allowlist itself whenever its IP changes is not recommended:</p>
   <ul>
-    <li>環境を乗っ取った攻撃者が、その権限で自分の IP を通せる。</li>
-    <li>クラウドのファイアウォールの権限は、書き込む IP の値までは縛れないことが多い。</li>
-    <li>IP 制限はもともと環境の侵害を防がない。攻撃者は中から、許可済みの IP で入ってくる。</li>
-    <li>出口の IP がほかの利用者と共有だった場合、同じサービスの利用者なら誰でも届くようになる。</li>
+    <li>An attacker who takes over the environment can use that right to allow their own IP.</li>
+    <li>Cloud firewall permissions usually cannot constrain which IP value gets written.</li>
+    <li>An IP restriction never protected against a compromised environment. The attacker comes in from inside, from an allowed IP.</li>
+    <li>If the egress IP is shared with other customers of the same service, all of them can now reach your server.</li>
   </ul>
-  <p>郵便受けを挟めば、製品のリポジトリは一切開かずに済み、IP が変わっても影響がありません。</p>
+  <p>With the mailbox in between, the product repository stays closed, and IP changes do not matter.</p>
 
-  <h3>鍵と、漏れたときの被害</h3>
+  <h3>Each key, and the damage if it leaks</h3>
   <div class="scroll">
   <table>
-    <thead><tr><th>鍵</th><th>できること</th><th>漏れたとき</th></tr></thead>
+    <thead><tr><th>Key</th><th>What it can do</th><th>If it leaks</th></tr></thead>
     <tbody>
-      <tr><th>郵便受けの書き込み鍵</th><td>郵便受けへの push と取得</td><td>郵便受けのコードを書き換えられる。製品には届かない</td></tr>
-      <tr><th>Issue 用のトークン</th><td>郵便受けの Issue の読み書き</td><td>偽の Issue を立てられる。作り込む側は裏を取るので、そのまま実行はされない</td></tr>
-      <tr><th>本番の読み取り権限</th><td>死活確認、ログ、費用の閲覧</td><td>ログの中身を読まれる。壊されはしない</td></tr>
+      <tr><th>Mailbox write key</th><td>Push to and fetch from the mailbox</td><td>Code in the mailbox can be overwritten. The product is out of reach</td></tr>
+      <tr><th>Issue token</th><td>Read and write issues on the mailbox</td><td>Fake issues can be opened. The builder agent verifies first, so they are not simply carried out</td></tr>
+      <tr><th>Production read access</th><td>Health checks, logs, cost figures</td><td>Logs can be read. Nothing can be broken</td></tr>
     </tbody>
   </table>
   </div>
 
-  <h3>運用の決まり</h3>
+  <h3>Operating rules</h3>
   <ul>
-    <li><strong>届いたものは信用しない前提で扱う。</strong>コードも引き継ぎ書も Issue も、作り込む側にとっては情報です。小さな修正はそのまま進めますが、作りを大きく変える話やデータを消す話は、人に確かめてから手を付けます。</li>
-    <li><strong>デプロイは人の承認を通す。</strong>最初のうちは、自動で本番に出る経路を作りません。</li>
-    <li><strong>生活側には本番の読み取りから渡す。</strong>書き込みが要る操作は、サービスごとに人が判断して足します。</li>
-    <li><strong>秘密をチャットに流さない。</strong>会話が学習に使われる設定のサービスがあります。</li>
+    <li><strong>Treat everything that arrives as untrusted.</strong> Code, handover notes and issues are information to the builder agent. Small fixes go ahead. Anything that reshapes the design or deletes data is confirmed with the person first.</li>
+    <li><strong>Deploys go through the person.</strong> At the start, there is no path that reaches production automatically.</li>
+    <li><strong>The life-side agent starts with read-only access to production.</strong> The person adds write actions per service, when they judge it right.</li>
+    <li><strong>No secrets in chat.</strong> Some services use conversations for training by default.</li>
   </ul>
 </section>
 
 <section>
-  <div class="part">3　位置づけ</div>
-  <h2>ほかの手法との違い</h2>
+  <div class="part">3 &nbsp; Where it sits</div>
+  <h2>How it differs from other approaches</h2>
   <div class="scroll">
   <table>
-    <thead><tr><th>名前</th><th>起点</th><th>LifeLoopOps との違い</th></tr></thead>
+    <thead><tr><th>Name</th><th>Starts from</th><th>Difference from LifeLoopOps</th></tr></thead>
     <tbody>
-      <tr><th>Spec Driven Development</th><td>仕様書</td><td>人が机で仕様を書くところから始まる。<strong>LifeLoopOps</strong> は生活の中の一言から始まる</td></tr>
-      <tr><th>ChatOps</th><td>チャット部屋での命令</td><td>人がボットのいる部屋に行く。<strong>LifeLoopOps</strong> はエージェントが人の生活に来る</td></tr>
-      <tr><th>AgentOps</th><td>エージェントの挙動</td><td>エージェント自体を安全に動かすための運用。人の生活は扱わない</td></tr>
-      <tr><th>AgenticOps</th><td>IT 基盤の障害</td><td>エージェントに運用を担わせる。企業の運用部門が対象</td></tr>
-      <tr><th>ambient agents</th><td>メールやシステムの出来事</td><td>裏で自分から動く点は近い。聞いているのは出来事の流れで、人の暮らしではない</td></tr>
+      <tr><th>Spec-driven development</th><td>A specification</td><td>Begins with a person writing a spec at a desk. <strong>LifeLoopOps</strong> begins with a sentence said in the middle of the day</td></tr>
+      <tr><th>ChatOps</th><td>Commands in a chat room</td><td>The person goes to the room where the bot is. In <strong>LifeLoopOps</strong> the agent comes to the person's life</td></tr>
+      <tr><th>AgentOps</th><td>Agent behaviour</td><td>Operations for running agents safely. It does not deal with the person's life</td></tr>
+      <tr><th>AgenticOps</th><td>IT infrastructure incidents</td><td>Agents carry out operations. Aimed at enterprise operations teams</td></tr>
+      <tr><th>Ambient agents</th><td>Email and system events</td><td>Close in that they act unprompted in the background. They listen to event streams, not to a person's day</td></tr>
     </tbody>
   </table>
   </div>
-  <p>系譜として近いのは ChatOps です。運用を、人が普段いる場所に持ってくるという発想が同じだからです。<strong>LifeLoopOps</strong> はその場所を、チャット部屋から生活そのものに移します。</p>
+  <p>ChatOps is the nearest ancestor. Both bring operations to where people already are. <strong>LifeLoopOps</strong> moves that place from the chat room to life itself.</p>
 </section>
 
 <section>
-  <h2>最初の実例</h2>
-  <p>この手法は、次の組み合わせから生まれました。</p>
+  <h2>The first instance</h2>
+  <p>The method came out of this combination:</p>
   <ul>
-    <li><span class="who-life">生活側</span>：Meta の Muse。クラウドの仮想マシンで常時稼働し、iPhone のチャットで話せる個人用エージェント。</li>
-    <li><span class="who-build">作り込む側</span>：Anthropic の Claude Code。手元の Mac で動くコーディングエージェント。</li>
-    <li>郵便受け：GitHub の非公開リポジトリ 1 つ。製品のコードは、接続元を絞った非公開の GitLab に置く。</li>
+    <li><span class="who-life">Life side</span>: Meta's Muse, a personal agent that runs continuously in a cloud virtual machine and is reached through chat on an iPhone.</li>
+    <li><span class="who-build">Builder</span>: Anthropic's Claude Code, a coding agent running on a local Mac.</li>
+    <li>Mailbox: one private GitHub repository. Product code lives in a private GitLab with restricted access.</li>
   </ul>
-  <p>Muse に古いアイデアの優先度を整理させたところ、2 日で 7 つほどの PoC が立ち上がりました。それをサービスに育てる相談を Claude Code としたときに、ここに書いた取り決めができました。手法そのものは特定の製品に依存しません。常時稼働で生活に入り込めるエージェントと、コードを深く扱えるエージェントがあれば成り立ちます。</p>
+  <p>Asked to sort old ideas by priority, Muse had about seven proofs of concept running within two days. The arrangement described here was worked out while discussing with Claude Code how to grow them into services. The method does not depend on these products. It needs one agent that is always on and can enter a person's life, and one that can work deeply with code.</p>
 </section>
 
 <section>
-  <h2>検討して採らなかった案</h2>
+  <h2>Options considered and rejected</h2>
   <div class="scroll">
   <table>
-    <thead><tr><th>案</th><th>採らなかった理由</th></tr></thead>
+    <thead><tr><th>Option</th><th>Why not</th></tr></thead>
     <tbody>
-      <tr><th>生活側が製品のリポジトリに直接 push</th><td>侵害されたときに製品まで届く。push されたファイルで CI が動くおそれもある</td></tr>
-      <tr><th>生活側に接続制限の書き換え権限</th><td>セキュリティの節のとおり</td></tr>
-      <tr><th>PoC ごとに受け渡し用リポジトリ</th><td>新しい PoC のたびに人の設定作業が要り、輪が止まる</td></tr>
-      <tr><th>生活側にリポジトリを作る権限</th><td>アカウント全体に届く広い権限になる</td></tr>
-      <tr><th>アクセストークンをチャットに貼って push</th><td>秘密の値が会話の記録に残る。公開鍵を登録する形なら秘密を渡さずに済む</td></tr>
-      <tr><th>生活側エージェントを自前の機材で動かす</th><td>公開されているのはモデルだけで、常時稼働やスマホからの操作は別に組む必要がある。性能も落ちる</td></tr>
+      <tr><th>Life-side agent pushes straight to the product repo</th><td>A compromise would reach the product. Pushed files could also trigger CI</td></tr>
+      <tr><th>Life-side agent may edit the access allowlist</th><td>See the security section</td></tr>
+      <tr><th>One handoff repository per PoC</th><td>Each new PoC needs setup from the person, and the loop stalls</td></tr>
+      <tr><th>Life-side agent may create repositories</th><td>That right reaches the whole account</td></tr>
+      <tr><th>Pasting an access token into chat</th><td>The secret stays in the conversation log. Registering a public key passes no secret</td></tr>
+      <tr><th>Running the life-side agent on your own hardware</th><td>Only the model is open. Always-on operation and phone access would have to be built separately, and capability drops</td></tr>
     </tbody>
   </table>
   </div>
 </section>
 
 <section>
-  <h2>弱いところと、まだ確かめていないこと</h2>
+  <h2>Weak points and open questions</h2>
   <ul>
-    <li><strong>作り込む側は常時動いていない。</strong>夜中に異常が見つかっても、人が呼ぶまで修正は始まりません。定期的に連絡板を見にいく仕組みは、製品のリポジトリの接続制限との噛み合わせを決めてから足します。</li>
-    <li><strong>生活側エージェントが SSH で push できるか。</strong>できなければ、対象を郵便受け 1 つに絞った期限付きトークンに切り替えます。</li>
-    <li><strong>生活側エージェントが、定期的な見守りと Issue の書き込みをどこまでこなせるか。</strong>最初のサービスで小さく試します。</li>
-    <li><strong>長く回した実績がない。</strong>PoC が増えたときに人の関門が詰まらないか、Issue の整理の質が保てるかは、これから分かります。</li>
+    <li><strong>The builder agent is not always on.</strong> If something breaks at night, the fix does not start until the person calls it. A scheduled check of the message board comes later, once it is squared with the product repository's access restrictions.</li>
+    <li><strong>Whether the life-side agent can push over SSH.</strong> If not, switch to a short-lived token scoped to the mailbox alone.</li>
+    <li><strong>How well the life-side agent handles scheduled watching and writing issues.</strong> To be tried small, on the first service.</li>
+    <li><strong>No long track record.</strong> Whether the person's gate clogs as proofs of concept pile up, and whether issue quality holds, remains to be seen.</li>
   </ul>
 </section>
 
 <section class="share">
-  <h2>共感したら共有してください</h2>
+  <h2>If this resonates, share it</h2>
   <div class="share-row">
-    <a href="https://twitter.com/intent/tweet?text=LifeLoopOps%EF%BC%9A%E7%94%9F%E6%B4%BB%E3%81%AB%E5%85%A5%E3%82%8A%E8%BE%BC%E3%82%80%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%92%E8%B5%B7%E7%82%B9%E3%81%AB%E3%80%81%E9%96%8B%E7%99%BA%E3%81%A8%E9%81%8B%E7%94%A8%E3%82%92%E3%81%B2%E3%81%A8%E7%B6%9A%E3%81%8D%E3%81%AE%E8%BC%AA%E3%81%A8%E3%81%97%E3%81%A6%E5%9B%9E%E3%81%99%E6%89%8B%E6%B3%95&amp;url=https%3A%2F%2Flsklab.com%2Flifeloopops%2F&amp;hashtags=LifeLoopOps&amp;via=letsspeak" target="_blank" rel="noopener">X</a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flsklab.com%2Flifeloopops%2F" target="_blank" rel="noopener">Facebook</a>
-    <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Flsklab.com%2Flifeloopops%2F" target="_blank" rel="noopener">LINE</a>
-    <a href="https://b.hatena.ne.jp/add?mode=confirm&amp;url=https%3A%2F%2Flsklab.com%2Flifeloopops%2F&amp;title=LifeLoopOps" target="_blank" rel="noopener">はてなブックマーク</a>
-    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Flsklab.com%2Flifeloopops%2F" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Flsklab.com%2Flifeloopops%2F&amp;t=LifeLoopOps%EF%BC%9A%E7%94%9F%E6%B4%BB%E3%81%AB%E5%85%A5%E3%82%8A%E8%BE%BC%E3%82%80%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%82%92%E8%B5%B7%E7%82%B9%E3%81%AB%E3%80%81%E9%96%8B%E7%99%BA%E3%81%A8%E9%81%8B%E7%94%A8%E3%82%92%E3%81%B2%E3%81%A8%E7%B6%9A%E3%81%8D%E3%81%AE%E8%BC%AA%E3%81%A8%E3%81%97%E3%81%A6%E5%9B%9E%E3%81%99%E6%89%8B%E6%B3%95" target="_blank" rel="noopener">Hacker News</a>
-    <button type="button" id="copy-link" data-copied="コピーしました" data-selected="選択しました">リンクをコピー</button>
+    <a href="https://twitter.com/intent/tweet?text=LifeLoopOps%3A%20development%20and%20operations%20with%20life%20in%20the%20loop&amp;url=https%3A%2F%2Flifeloopops.github.io%2F&amp;hashtags=LifeLoopOps&amp;via=letsspeak" target="_blank" rel="noopener">X</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flifeloopops.github.io%2F" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Flifeloopops.github.io%2F" target="_blank" rel="noopener">LINE</a>
+    <a href="https://b.hatena.ne.jp/add?mode=confirm&amp;url=https%3A%2F%2Flifeloopops.github.io%2F&amp;title=LifeLoopOps" target="_blank" rel="noopener">Hatena Bookmark</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Flifeloopops.github.io%2F" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Flifeloopops.github.io%2F&amp;t=LifeLoopOps%3A%20development%20and%20operations%20with%20life%20in%20the%20loop" target="_blank" rel="noopener">Hacker News</a>
+    <button type="button" id="copy-link" data-copied="Copied" data-selected="Selected">Copy link</button>
   </div>
-  <div class="share-url" id="share-url">https://lsklab.com/lifeloopops/</div>
+  <div class="share-url" id="share-url">https://lifeloopops.github.io/</div>
 </section>
 
 <footer>
-  <div>2026 年 11 月 20 日の相談をもとに作成。各製品の仕様は公式ドキュメントと報道によるもので、変わることがあります。</div>
-  <div><strong>LifeLoopOps</strong> は手法の名前です。同じ名前を含む会社や製品とは関係がありません。</div>
-  <div>参考：<a href="https://www.techtarget.com/searchitoperations/definition/ChatOps">ChatOps</a>、<a href="https://arxiv.org/pdf/2508.02121">AgentOps の調査論文</a>、<a href="https://blog.langchain.com/introducing-ambient-agents">ambient agents</a></div>
+  <div>Written from a working session on 20 November 2026. Product details come from official documentation and press reports and may change.</div>
+  <div><strong>LifeLoopOps</strong> is the name of a method. It is not affiliated with any company or product whose name contains the same words.</div>
+  <div>References: <a href="https://www.techtarget.com/searchitoperations/definition/ChatOps">ChatOps</a>, <a href="https://arxiv.org/pdf/2508.02121">a survey on AgentOps</a>, <a href="https://blog.langchain.com/introducing-ambient-agents">ambient agents</a></div>
 </footer>
 
 </div>
@@ -501,13 +509,13 @@ push 先のリポジトリは、あとで私から伝えます。
   function selectText() {
     var r = document.createRange(); r.selectNodeContents(pre);
     var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-    btn.textContent = '選択しました';
+    btn.textContent = 'Selected';
   }
   btn.addEventListener('click', function () {
     try {
       navigator.clipboard.writeText(pre.textContent).then(function () {
-        btn.textContent = 'コピーしました';
-        setTimeout(function () { btn.textContent = 'コピー'; }, 2000);
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
       }, selectText);
     } catch (e) { selectText(); }
   });

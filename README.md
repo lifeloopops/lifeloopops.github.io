@@ -2,12 +2,11 @@
 
 Development and operations with life in the loop.
 
-人の生活に入り込む常時稼働のエージェントを起点に、開発と運用をひと続きの輪として回す手法の紹介です。
+An always-on agent steps into the places where a person lives and works. What it picks up there becomes the starting point, and development and operations run as one continuous loop from it.
 
-- 日本語: [index.html](index.html)
-- English: [en.html](en.html)
+- English: https://lifeloopops.github.io/
+- 日本語: https://lifeloopops.github.io/ja.html
 
-2026 年 11 月時点の提案で、長く回した実績はまだありません。
 This is a proposal as of November 2026 and does not yet have a long track record.
 
 Author: [@letsspeak](https://github.com/letsspeak) ([Twitter](https://twitter.com/letsspeak))
